@@ -10,7 +10,7 @@ api_id =
 api_hash = " "
 bot_token = os.environ.get("BOT_TOKEN")
 ru = random.randint(182763637281, 82828272726525262)
-bot = Client("Bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
+bot = Client("Bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token, session_string=STRING_SESSION, in_memory=True)
 
 # Flask Web Server
 app = Flask(__name__)
