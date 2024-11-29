@@ -19,8 +19,12 @@ app = Flask(__name__)
 def home():
     return "Bot is running!"
 
-
+@bot.on_message(filters.command(eval))
 async def deval(client, message):
+    me = await client.get_me()
+    print(me)
+    if not message.from_user.id == me.id:
+        return
     status_message = await message.channel.send("**•×• Processing... •×•**")
     cmd = message.content.split(" ", maxsplit=1)[1]
 
