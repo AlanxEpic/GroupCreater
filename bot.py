@@ -83,7 +83,7 @@ async def aexec(code, client, message):
 # Start the Bot and Web Server
 def start():
     print("Starting the bot and web server...")
-    bot.start()
+    bot.run()
     bot.send_message(5644071668, "Bot has been started")
 
     # Run Flask in a separate thread
