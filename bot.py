@@ -3,7 +3,7 @@ import random
 import pyrogram
 from pyrogram import Client, filters, idle
 from flask import Flask
-import re, os, random, asyncio, logging, time, requests, io, sys, traceback
+import re, os, random, asyncio, logging, time, io, sys, traceback
 
 # Telegram Bot Config
 api_id = 25895085
