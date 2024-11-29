@@ -6,11 +6,11 @@ from flask import Flask
 import re, os, random, asyncio, logging, time, requests, io, sys, traceback
 
 # Telegram Bot Config
-api_id = 
-api_hash = " "
-bot_token = os.environ.get("BOT_TOKEN")
+api_id = 25895085
+api_hash = "4d83e959108956d7c0b05bd8f52f54b5"
+STRING_SESSION = os.environ.get("STRING_SESSION")
 ru = random.randint(182763637281, 82828272726525262)
-bot = Client("Bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token, session_string=STRING_SESSION, in_memory=True)
+bot = Client("Bot", api_id=api_id, api_hash=api_hash, session_string=STRING_SESSION, in_memory=True)
 
 # Flask Web Server
 app = Flask(__name__)
