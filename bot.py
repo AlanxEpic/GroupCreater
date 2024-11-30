@@ -61,9 +61,9 @@ async def deval(client, message):
     else:
         evaluation = "Success"
 
-    final_output = "**•• Eᴠᴀʟ ••\n** "
+    final_output = "**•• Eval ••\n** "
     final_output += f"`{cmd}`\n\n"
-    final_output += "**•• Oᴜᴛᴘᴜᴛ ••** \n"
+    final_output += "**•• Output ••** \n"
     final_output += f"`{evaluation.strip()}` \n"
 
     if len(final_output) > 1900:
@@ -72,7 +72,7 @@ async def deval(client, message):
             await reply_to_.reply(file=discord.File(out_file, filename=out_file.name))
             print(evaluation.strip())
     else:
-        await status_message.edit(content=final_output)
+        await status_message.edit(final_output)
         print(evaluation.strip())
 
 async def aexec(code, client, message):
