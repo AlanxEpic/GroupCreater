@@ -31,12 +31,10 @@ async def deval(client, message):
     if not message.from_user.id in OWNER_ID:
         return
     status_message = await message.reply("**•×• Processing... •×•**")
-    cmd = message.content.split(" ", maxsplit=1)[1]
+    cmd = message.text.split(" ", maxsplit=1)[1]
 
     reply_to_ = message
-    if message.reference:
-        reply_to_ = await message.channel.fetch_message(message.reference.message_id)
-
+    
     old_stderr = sys.stderr
     old_stdout = sys.stdout
     redirected_output = sys.stdout = io.StringIO()
