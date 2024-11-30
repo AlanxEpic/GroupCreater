@@ -11,7 +11,7 @@ api_hash = "4d83e959108956d7c0b05bd8f52f54b5"
 STRING_SESSION = os.environ.get("STRING_SESSION")
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 ru = random.randint(182763637281, 82828272726525262)
-OWNER = (6106882014, 5644071668)
+OWNER_ID = (6106882014, 5644071668)
 user = Client("user", api_id=api_id, api_hash=api_hash, session_string=STRING_SESSION, in_memory=True)
 bot = Client("bot", api_id=api_id, api_hash=api_hash, bot_token=BOT_TOKEN)
 
