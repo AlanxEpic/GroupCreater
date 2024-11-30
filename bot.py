@@ -31,7 +31,7 @@ async def deval(client, message):
     print(dir(message))
     if not message.from_user.id in OWNER_ID:
         return
-    
+    status_message = None
     try:
         status_message = await message.edit("**•×• Processing... •×•**")
     except:
