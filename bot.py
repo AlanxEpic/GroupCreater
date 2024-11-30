@@ -21,6 +21,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return "Bot is running!"
+
 @bot.on_message(filters.command(commands="eval", prefixes="."))
 @user.on_message(filters.command("eval"))
 async def deval(client, message):
@@ -81,6 +82,31 @@ async def aexec(code, client, message):
         + "".join(f"\n {l_}" for l_ in code.split("\n"))
     )
     return await locals()["__aexec"](client, message)
+
+
+@bot.on_message(filters.command(commands="open", prefixes="."))
+@user.on_message(filters.command("open"))
+async def open_file(client, message):
+    if not message.reply_to_message.document:
+        await message.reply("Please reply to a file!")
+        return
+
+    try:
+        # Download the file
+        file_path = await client.download_media(message.reply_to_message.document)
+        
+        # Read the content of the file
+        with open(file_path, "r", encoding="utf-8") as file:
+            content = file.read()
+
+        # Split the content into chunks of 4096 characters
+        chunks = [content[i:i+4096] for i in range(0, len(content), 4096)]
+
+        # Send each chunk as a separate message
+        for chunk in chunks:
+            await message.reply(chunk)
+    except Exception as e:
+        await message.reply(f"An error occurred: {e}")
 
         
 # Start the Bot and Web Server
