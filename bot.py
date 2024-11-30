@@ -9,8 +9,10 @@ import re, os, random, asyncio, logging, time, io, sys, traceback
 api_id = 25895085
 api_hash = "4d83e959108956d7c0b05bd8f52f54b5"
 STRING_SESSION = os.environ.get("STRING_SESSION")
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 ru = random.randint(182763637281, 82828272726525262)
-bot = Client("Bot", api_id=api_id, api_hash=api_hash, session_string=STRING_SESSION, in_memory=True)
+user = Client("user", api_id=api_id, api_hash=api_hash, session_string=STRING_SESSION, in_memory=True)
+bot = Client("bot", api_id=api_id, api_hash=api_hash, bot_token=BOT_TOKEN)
 
 # Flask Web Server
 app = Flask(__name__)
@@ -19,7 +21,7 @@ app = Flask(__name__)
 def home():
     return "Bot is running!"
 
-@bot.on_message(filters.command("eval"))
+@user.on_message(filters.command("eval"))
 async def deval(client, message):
     me = await client.get_me()
     print(me)
@@ -82,8 +84,11 @@ async def aexec(code, client, message):
         
 # Start the Bot and Web Server
 def start():
-    print("Starting the bot and web server...")
-    bot.run()
+    print("Starting the user and web server...")
+    user.run()
+    user.send_message(5644071668, "Bot has been started")
+    print("Starting the bot....")
+    bot.start()
     bot.send_message(5644071668, "Bot has been started")
 
     # Run Flask in a separate thread
@@ -91,6 +96,8 @@ def start():
     threading.Thread(target=app.run, kwargs={"host": "0.0.0.0", "port": 8000}).start()
 
     idle()  # Keep the bot running
+    user.stop()
+    print("User has stopped.")
     bot.stop()
     print("Bot has stopped.")
 
