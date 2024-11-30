@@ -69,7 +69,7 @@ async def deval(client, message):
     if len(final_output) > 1900:
         with io.BytesIO(str.encode(final_output)) as out_file:
             out_file.name = "eval.text"
-            await reply_to_.reply(file=discord.File(out_file, filename=out_file.name))
+            await reply_to_.reply_document(document=out_file)
             print(evaluation.strip())
     else:
         await status_message.edit(final_output)
