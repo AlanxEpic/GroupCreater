@@ -31,7 +31,11 @@ async def deval(client, message):
     print(dir(message))
     if not message.from_user.id in OWNER_ID:
         return
-    status_message = await message.reply("**•×• Processing... •×•**")
+    
+    try:
+        status_message = await message.edit("**•×• Processing... •×•**")
+    except:
+        status_message = await message.reply("**•×• Processing... •×•**")
     cmd = message.text.split(" ", maxsplit=1)[1]
 
     reply_to_ = message
