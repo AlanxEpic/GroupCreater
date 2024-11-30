@@ -86,7 +86,7 @@ async def aexec(code, client, message):
 # Start the Bot and Web Server
 def start():
     print("Starting the user and web server...")
-    user.run()
+    user.start()
     user.send_message(5644071668, "Bot has been started")
     print("Starting the bot....")
     bot.start()
