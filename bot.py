@@ -21,7 +21,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return "Bot is running!"
-@bot.on_message(filters.command("eval"))
+@bot.on_message(filters.command(commands="eval", prefixes="."))
 #@user.on_message(filters.command("eval"))
 async def deval(client, message):
     me = await client.get_me()
