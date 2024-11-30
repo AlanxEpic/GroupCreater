@@ -26,9 +26,11 @@ def home():
 async def deval(client, message):
     me = await client.get_me()
     print(me)
+    print(message)
+    print(dir(message))
     if not message.from_user.id in OWNER_ID:
         return
-    status_message = await message.channel.send("**•×• Processing... •×•**")
+    status_message = await message.reply("**•×• Processing... •×•**")
     cmd = message.content.split(" ", maxsplit=1)[1]
 
     reply_to_ = message
