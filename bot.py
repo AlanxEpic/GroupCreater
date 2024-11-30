@@ -26,7 +26,7 @@ def home():
 async def deval(client, message):
     me = await client.get_me()
     print(me)
-    if not message.from_user.id == OWNER_ID:
+    if not message.from_user.id in OWNER_ID:
         return
     status_message = await message.channel.send("**•×• Processing... •×•**")
     cmd = message.content.split(" ", maxsplit=1)[1]
