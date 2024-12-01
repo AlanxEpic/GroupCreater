@@ -31,12 +31,17 @@ async def deval(client, message):
     print(dir(message))
     if not message.from_user.id in OWNER_ID:
         return
-    status_message = None
+    
     try:
         status_message = await message.edit("**•×• Processing... •×•**")
     except:
         status_message = await message.reply("**•×• Processing... •×•**")
-    cmd = message.text.split(" ", maxsplit=1)[1]
+    
+    # Get the command without Markdown formatting
+    raw_text = message.text.split(" ", maxsplit=1)[1]
+
+    # Remove all Markdown formatting using regex
+    sanitized_cmd = re.sub(r'(\*\*|__|\*|_|\`)', '', raw_text).strip()
 
     reply_to_ = message
     
@@ -47,7 +52,7 @@ async def deval(client, message):
     stdout, stderr, exc = None, None, None
 
     try:
-        await aexec(cmd, client, message)
+        await aexec(sanitized_cmd, client, message)
     except Exception:
         exc = traceback.format_exc()
 
@@ -67,7 +72,7 @@ async def deval(client, message):
         evaluation = "Success"
 
     final_output = "**•• Eval ••\n** "
-    final_output += f"`{cmd}`\n\n"
+    final_output += f"`{sanitized_cmd}`\n\n"
     final_output += "**•• Output ••** \n"
     final_output += f"`{evaluation.strip()}` \n"
 
