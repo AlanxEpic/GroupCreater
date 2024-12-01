@@ -38,7 +38,7 @@ async def deval(client, message):
         status_message = await message.reply("**•×• Processing... •×•**")
     
     # Get the command without Markdown formatting
-    raw_text = message.text.split(" ", maxsplit=1)[1]
+    cmd = message.text.split(" ", maxsplit=1)[1]
 
     # Remove all Markdown formatting using regex
     sanitized_cmd = re.sub(r'(\*\*|__|\*|_|\`)', '', raw_text).strip()
@@ -52,7 +52,7 @@ async def deval(client, message):
     stdout, stderr, exc = None, None, None
 
     try:
-        await aexec(sanitized_cmd, client, message)
+        await aexec(cmd, client, message)
     except Exception:
         exc = traceback.format_exc()
 
@@ -72,7 +72,7 @@ async def deval(client, message):
         evaluation = "Success"
 
     final_output = "**•• Eval ••\n** "
-    final_output += f"`{sanitized_cmd}`\n\n"
+    final_output += f"`{cmd}`\n\n"
     final_output += "**•• Output ••** \n"
     final_output += f"`{evaluation.strip()}` \n"
 
