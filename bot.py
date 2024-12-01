@@ -11,7 +11,7 @@ api_hash = "4d83e959108956d7c0b05bd8f52f54b5"
 STRING_SESSION = os.environ.get("STRING_SESSION")
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 ru = random.randint(182763637281, 82828272726525262)
-OWNER_ID = (6106882014, 5644071668)
+OWNERS = (6106882014, 5644071668)
 user = Client("user", api_id=api_id, api_hash=api_hash, session_string=STRING_SESSION, in_memory=True)
 bot = Client("bot", api_id=api_id, api_hash=api_hash, bot_token=BOT_TOKEN)
 
@@ -22,15 +22,14 @@ app = Flask(__name__)
 def home():
     return "Bot is running!"
 
-@bot.on_message(filters.command(commands="eval", prefixes=".") | filters.me)
+@bot.on_message(filters.command(commands="eval", prefixes="."), filters.user(OWNERS) | filters.me)
 @user.on_message(filters.command("eval"))
 async def deval(client, message):
     me = await client.get_me()
     print(me)
     print(message)
     print(dir(message))
-    if not message.from_user.id in OWNER_ID:
-        return
+    
     status_message = None
     try:
         status_message = await message.edit("**•×• Processing... •×•**")
