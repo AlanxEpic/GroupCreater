@@ -22,7 +22,7 @@ app = Flask(__name__)
 def home():
     return "Bot is running!"
 
-@bot.on_message(filters.command(commands="eval", prefixes=".") & (filters.user(OWNERS))
+@bot.on_message(filters.command(commands="eval", prefixes=".") & (filters.user(OWNERS)))
 @user.on_message(filters.command("eval") & (filters.user(OWNERS)))
 async def deval(client, message):
     me = await client.get_me()
