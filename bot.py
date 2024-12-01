@@ -39,10 +39,7 @@ async def deval(client, message):
     
     # Get the command without Markdown formatting
     cmd = message.text.split(" ", maxsplit=1)[1]
-
-    # Remove all Markdown formatting using regex
-    sanitized_cmd = re.sub(r'(\*\*|__|\*|_|\`)', '', raw_text).strip()
-
+    
     reply_to_ = message
     
     old_stderr = sys.stderr
