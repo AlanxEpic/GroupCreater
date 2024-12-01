@@ -73,7 +73,7 @@ async def deval(client, message):
     final_output += "**•• Output ••** \n"
     final_output += f"`{evaluation.strip()}` \n"
 
-    if len(final_output) > 1900:
+    if len(final_output) > 4000:
         with io.BytesIO(str.encode(final_output)) as out_file:
             out_file.name = "eval.text"
             await reply_to_.reply_document(document=out_file)
