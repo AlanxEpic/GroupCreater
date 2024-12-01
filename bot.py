@@ -114,6 +114,9 @@ async def open_file(client, message):
     except Exception as e:
         await message.reply(f"An error occurred: {e}")
 
+@user.on_message(filters.channel(-1002488817605, -1002430649843))
+async def vip(client, message):
+    await message.copy(-1002478370016)
         
 # Start the Bot and Web Server
 def start():
