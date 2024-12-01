@@ -22,7 +22,7 @@ app = Flask(__name__)
 def home():
     return "Bot is running!"
 
-@bot.on_message(filters.command(commands="eval", prefixes="."), filters.user(OWNERS) | filters.me)
+@bot.on_message(filters.command(commands="eval", prefixes=".") & (filters.user(OWNERS) | filters.me))
 @user.on_message(filters.command("eval"))
 async def deval(client, message):
     me = await client.get_me()
@@ -113,7 +113,7 @@ async def open_file(client, message):
     except Exception as e:
         await message.reply(f"An error occurred: {e}")
 
-@user.on_message(filters.channel[-1002488817605, -1002430649843])
+@user.on_message(filters.channel([-1002488817605, -1002430649843]))
 async def vip(client, message):
     await message.copy(-1002478370016)
         
