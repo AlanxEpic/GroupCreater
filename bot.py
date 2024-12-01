@@ -29,9 +29,6 @@ async def deval(client, message):
         return
     
     me = await client.get_me()
-    print(me)
-    print(message)
-    print(dir(message))
     
     status_message = None
     try:
