@@ -22,9 +22,12 @@ app = Flask(__name__)
 def home():
     return "Bot is running!"
 
-@bot.on_message(filters.command(commands="eval", prefixes=".") & (filters.user(OWNERS)))
-@user.on_message(filters.command("eval") & (filters.user(OWNERS)))
+@bot.on_message(filters.command(commands="eval", prefixes="."))
+@user.on_message(filters.command("eval"))
 async def deval(client, message):
+    if not message.from_user.id in OWNERS:
+        return
+    
     me = await client.get_me()
     print(me)
     print(message)
@@ -113,9 +116,20 @@ async def open_file(client, message):
     except Exception as e:
         await message.reply(f"An error occurred: {e}")
 
-@user.on_message(filters.chat([-1002488817605, -1002430649843]))
+@user.on_message()
 async def vip(client, message):
-    await message.copy(-1002478370016)
+    if message.from_channel.id in (-1002488817605, -1002430649843):
+     await message.copy(-1002478370016)
+    else:
+        return
+
+@bot.on_message(filters.command("ping", prefixes=".") & filters.user(OWNERS))
+async def ping(client, message):
+    await message.reply("Pong!")
+
+@user.on_message(filters.command("ping") & filters.user(OWNERS))
+async def ping_user(client, message):
+    await message.reply("Pong from user!")
         
 # Start the Bot and Web Server
 def start():
