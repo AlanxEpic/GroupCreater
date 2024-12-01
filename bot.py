@@ -118,7 +118,7 @@ async def open_file(client, message):
 
 @user.on_message()
 async def vip(client, message):
-    if message.from_channel.id in (-1002488817605, -1002430649843):
+    if message.chat.id in (-1002488817605, -1002430649843):
      await message.copy(-1002478370016)
     else:
         return
