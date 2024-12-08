@@ -1,5 +1,4 @@
-import os
-import random
+from openai import OpenAI
 import pyrogram
 from pyrogram import Client, filters, idle
 from flask import Flask
@@ -9,9 +8,11 @@ import re, os, random, asyncio, logging, time, io, sys, traceback
 api_id = 25895085
 api_hash = "4d83e959108956d7c0b05bd8f52f54b5"
 STRING_SESSION = os.environ.get("STRING_SESSION")
+GPT_KEY = os.environ.get("GPT_KEY")
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 ru = random.randint(182763637281, 82828272726525262)
 OWNERS = 6106882014, 5644071668
+gpt = OpenAI
 user = Client("user", api_id=api_id, api_hash=api_hash, session_string=STRING_SESSION, in_memory=True)
 bot = Client("bot", api_id=api_id, api_hash=api_hash, bot_token=BOT_TOKEN)
 
