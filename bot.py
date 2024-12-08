@@ -114,7 +114,7 @@ async def gpt_response(client, message):
 
         # Retrieve the response content
         for gans in response:
-            reply = gans.choices[0].delta.content or "", end="")
+            reply = gans.choices[0].delta.content or "", end=""
         
         await message.reply(reply)
 
