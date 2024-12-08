@@ -105,7 +105,7 @@ async def gpt_response(client, message):
         query = message.text.split(" ", maxsplit=1)[1]
         
         response = gpt.chat.completions.create(
-            model="gpt-4",
+            model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant who is programming pro, the best question answerers, the advanced answer provider and detailed provider."},
                 {"role": "user", "content": query}
