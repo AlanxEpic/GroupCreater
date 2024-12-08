@@ -113,8 +113,10 @@ async def gpt_response(client, message):
         )
 
         # Retrieve the response content
-        reply = response['choices'][0]['message']['content']
-        await message.reply(reply)
+        for gans in response:
+            reply = gans.choices[0].delta.content or "", end="")
+        
+         await message.reply(reply)
 
     except IndexError:
         await message.reply("Please provide a query. Usage: `.gpt <your question>`")
