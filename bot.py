@@ -103,19 +103,20 @@ async def gpt_response(client, message):
         # Extract user query
         query = message.text.split(" ", maxsplit=1)[1]
 
-        # Generate response from OpenAI
+        # Set OpenAI API key
         openai.api_key = GPT_KEY
+
+        # Generate response from OpenAI using the updated API
         response = openai.ChatCompletion.create(
             model="gpt-4",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": query}
-            ],
-            n=1  # Single response
+            ]
         )
 
         # Retrieve the response content
-        reply = response['choices'][0]['message']['content']
+        reply = response.choices[0].message.content
         await message.reply(reply)
 
     except IndexError:
