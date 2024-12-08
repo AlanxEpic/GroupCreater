@@ -13,6 +13,7 @@ GPT_KEY = os.environ.get("GPT_KEY")  # Add your OpenAI API key here or as an env
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 ru = random.randint(182763637281, 82828272726525262)
 OWNERS = 6106882014, 5644071668
+gpt = OpenAI(api_key=GPT_KEY)
 
 user = Client("user", api_id=api_id, api_hash=api_hash, session_string=STRING_SESSION, in_memory=True)
 bot = Client("bot", api_id=api_id, api_hash=api_hash, bot_token=BOT_TOKEN)
@@ -102,13 +103,11 @@ async def gpt_response(client, message):
     try:
         # Extract user query
         query = message.text.split(" ", maxsplit=1)[1]
-
-        # Generate response from OpenAI
-        openai.api_key = GPT_KEY
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
+        
+        response = gpt.chat.completions.create(
+            model="gpt-4o",
             messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "system", "content": "You are a helpful assistant who is programming pro, the best question answerers, the advanced answer provider and detailed provider."},
                 {"role": "user", "content": query}
             ]
         )
