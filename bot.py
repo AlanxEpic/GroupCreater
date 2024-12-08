@@ -103,11 +103,9 @@ async def gpt_response(client, message):
         # Extract user query
         query = message.text.split(" ", maxsplit=1)[1]
 
-        # Set OpenAI API key
+        # Generate response from OpenAI
         openai.api_key = GPT_KEY
-
-        # Generate response from OpenAI using the updated API
-        response = openai.ChatCompletion.create(
+        response = openai.ChatCompletion.acreate(
             model="gpt-4",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
@@ -184,4 +182,3 @@ def start():
 
 if __name__ == "__main__":
     start()
-    
