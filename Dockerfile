@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y \
     libgdk-pixbuf2.0-0 \
     libxss1 \
     libappindicator3-1 \
-    libindicator3-1 \
     fonts-liberation \
     xdg-utils \
     && apt-get clean
