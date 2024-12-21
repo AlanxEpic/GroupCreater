@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     libnss3 \
     libgdk-pixbuf2.0-0 \
     libxss1 \
-    libappindicator3-1 \  # Consider removing or replacing this if unnecessary
+    libappindicator3-1 \
     fonts-liberation \
     xdg-utils \
     && apt-get clean
