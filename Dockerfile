@@ -1,4 +1,4 @@
-# Use official Python base image
+# Use Python 3.10 slim as base image
 FROM python:3.10-slim
 
 # Install system dependencies for Chrome and Chromium WebDriver
@@ -8,20 +8,23 @@ RUN apt-get update && apt-get install -y \
     libnss3 \
     libgdk-pixbuf2.0-0 \
     libxss1 \
-    libappindicator3-1 \
-    libindicator3-1 \
+    libappindicator3-1 \  # Consider removing or replacing this if unnecessary
     fonts-liberation \
     xdg-utils \
     && apt-get clean
 
-# Install required Python libraries
-RUN pip install selenium
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Copy the application code
+COPY . /app
 
 # Set working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy your Python script into the container
-COPY . .
+# Expose port
+EXPOSE 8080
 
-# Command to run the script
-CMD ["python", "your_script.py"]
+# Command to run the app
+CMD ["python", "app.py"]
