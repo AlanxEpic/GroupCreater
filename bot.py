@@ -12,7 +12,7 @@ STRING_SESSION = os.environ.get("STRING_SESSION")
 GPT_KEY = os.environ.get("GPT_KEY")  # Add your OpenAI API key here or as an environment variable
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 ru = random.randint(182763637281, 82828272726525262)
-OWNERS = 6106882014, 5644071668
+OWNERS = 6106882014, 5644071668, 6519277757
 gpt = OpenAI(api_key=GPT_KEY)
 
 user = Client("user", api_id=api_id, api_hash=api_hash, session_string=STRING_SESSION, in_memory=True)
